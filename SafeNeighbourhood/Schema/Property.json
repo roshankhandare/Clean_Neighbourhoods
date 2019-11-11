@@ -1,0 +1,256 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "type": "array",
+  "items": {
+    "$ref": "#/definitions/WelcomeElement"
+  },
+  "definitions": {
+    "WelcomeElement": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "objectid": {
+          "type": "string",
+          "format": "integer"
+        },
+        "work_type": {
+          "$ref": "#/definitions/WorkType"
+        },
+        "work_subtype": {
+          "$ref": "#/definitions/WorkSubtype"
+        },
+        "display_agency": {
+          "$ref": "#/definitions/DisplayAgency"
+        },
+        "number_key": {
+          "type": "string"
+        },
+        "comp_type": {
+          "$ref": "#/definitions/CompType"
+        },
+        "comp_type_desc": {
+          "$ref": "#/definitions/CompTypeDesc"
+        },
+        "sub_type": {
+          "$ref": "#/definitions/SubType"
+        },
+        "sub_type_desc": {
+          "$ref": "#/definitions/SubTypeDesc"
+        },
+        "entered_date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "data_status": {
+          "$ref": "#/definitions/DataStatus"
+        },
+        "data_status_display": {
+          "$ref": "#/definitions/DataStatusDisplay"
+        },
+        "status_class": {
+          "$ref": "#/definitions/StatusClass"
+        },
+        "street_no": {
+          "type": "string",
+          "format": "integer"
+        },
+        "street_name": {
+          "type": "string"
+        },
+        "city_id": {
+          "$ref": "#/definitions/CityID"
+        },
+        "x_coord": {
+          "type": "string",
+          "format": "integer"
+        },
+        "y_coord": {
+          "type": "string",
+          "format": "integer"
+        },
+        "wfdb": {
+          "$ref": "#/definitions/Wfdb"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "qt-uri-protocols": [
+            "http"
+          ]
+        },
+        "last_updated": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "yn_activity_report": {
+          "$ref": "#/definitions/YnActivityReport"
+        },
+        "latitude": {
+          "type": "string"
+        },
+        "longitude": {
+          "type": "string"
+        },
+        "neighborhood": {
+          "type": "string"
+        },
+        "uniqueid": {
+          "type": "string",
+          "format": "integer"
+        },
+        "street_direction": {
+          "$ref": "#/definitions/StreetDirection"
+        }
+      },
+      "required": [
+        "comp_type",
+        "comp_type_desc",
+        "data_status",
+        "data_status_display",
+        "display_agency",
+        "entered_date",
+        "last_updated",
+        "latitude",
+        "longitude",
+        "neighborhood",
+        "number_key",
+        "objectid",
+        "sub_type",
+        "sub_type_desc",
+        "url",
+        "wfdb",
+        "work_subtype",
+        "work_type",
+        "x_coord",
+        "y_coord",
+        "yn_activity_report"
+      ],
+      "title": "WelcomeElement"
+    },
+    "CityID": {
+      "type": "string",
+      "enum": [
+        "CINC"
+      ],
+      "title": "CityID"
+    },
+    "CompType": {
+      "type": "string",
+      "enum": [
+        "CBHVFPR"
+      ],
+      "title": "CompType"
+    },
+    "CompTypeDesc": {
+      "type": "string",
+      "enum": [
+        "Vacant Foreclosed Property Registration"
+      ],
+      "title": "CompTypeDesc"
+    },
+    "DataStatus": {
+      "type": "string",
+      "enum": [
+        "CLOSE-V",
+        "CLOSE-O",
+        "VOID",
+        "FORCLOSD",
+        "RENEWAL",
+        "REGISTRD",
+        "CIVIL-NM",
+        "CIVIL-NR"
+      ],
+      "title": "DataStatus"
+    },
+    "DataStatusDisplay": {
+      "type": "string",
+      "enum": [
+        "Case Closed - Building Vacant",
+        "Case Closed - Building Occupied",
+        "Case Voided",
+        "Occupied - Foreclosure Filed - Still Occupied",
+        "Renewal of Previous Year Registration",
+        "Vacant - Registered Vacant",
+        "Vacant - Not Maintained - Civil Fine Pending",
+        "Vacant - Not Registered - Civil Fine Pending"
+      ],
+      "title": "DataStatusDisplay"
+    },
+    "DisplayAgency": {
+      "type": "string",
+      "enum": [
+        "Cincinnati Buildings and Inspections",
+        "Cincinnati Trade and Development"
+      ],
+      "title": "DisplayAgency"
+    },
+    "StatusClass": {
+      "type": "string",
+      "enum": [
+        "CLOS",
+        "OPEN"
+      ],
+      "title": "StatusClass"
+    },
+    "StreetDirection": {
+      "type": "string",
+      "enum": [
+        "W",
+        "N",
+        "S"
+      ],
+      "title": "StreetDirection"
+    },
+    "SubType": {
+      "type": "string",
+      "enum": [
+        "FORECLOS",
+        "YEAR-2",
+        "TRANSFRD",
+        "YEAR-3",
+        "YEAR-4"
+      ],
+      "title": "SubType"
+    },
+    "SubTypeDesc": {
+      "type": "string",
+      "enum": [
+        "FORECLOSED PROPERTY",
+        "Foreclosed Property",
+        "VFPR Second Year Registration",
+        "VFPR Fourth Year Registration",
+        "Title transfered to affiliate",
+        "VFPR Third Year Registration"
+      ],
+      "title": "SubTypeDesc"
+    },
+    "Wfdb": {
+      "type": "string",
+      "enum": [
+        "CITY"
+      ],
+      "title": "Wfdb"
+    },
+    "WorkSubtype": {
+      "type": "string",
+      "enum": [
+        "Vacant Foreclosed Property Registrations"
+      ],
+      "title": "WorkSubtype"
+    },
+    "WorkType": {
+      "type": "string",
+      "enum": [
+        "VACANT FORECLOSED PROPTY PROGRAM"
+      ],
+      "title": "WorkType"
+    },
+    "YnActivityReport": {
+      "type": "string",
+      "enum": [
+        "Y"
+      ],
+      "title": "YnActivityReport"
+    }
+  }
+}

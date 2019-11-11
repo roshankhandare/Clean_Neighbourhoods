@@ -1,0 +1,36 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+    List<QuickType.Property> allProperty = (List<QuickType.Property>)ViewData["allProperty"];
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+  
+    <table>
+        <tr>
+            <th>Neighbourhood</th>
+            <th>Longitude</th>
+            <th>Latitude</th>
+            <th>Street_Name</th>
+            <th>Street_Number</th>
+            <th>Property ID</th>
+        </tr>
+        @{
+            @foreach (QuickType.Property property in allProperty)
+            {
+                <tr>
+                    <td>@property.Neighborhood</td>
+                    <td>@property.Longitude</td>
+                    <td>@property.Latitude </td>
+                    <td>@property.StreetName</td>
+                    <td>@property.StreetNo</td>
+                    <td>@property.Uniqueid</td>
+                </tr>
+            }
+        }
+    </table>
+    <br />
+</div>
