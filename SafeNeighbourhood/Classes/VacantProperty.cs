@@ -134,12 +134,12 @@ namespace QuickTypeVProperty
 
     public partial class VacantProperty
     {
-        public static List<VacantProperty> FromJson(string json) => JsonConvert.DeserializeObject<List<VacantProperty>>(json, QuickTypeVProperty.Converter.Settings);
+        public static VacantProperty[] FromJson(string json) => JsonConvert.DeserializeObject<VacantProperty[]>(json, QuickTypeVProperty.Converter.Settings);
     }
 
     public static class Serialize
     {
-        public static string ToJson(this List<VacantProperty> self) => JsonConvert.SerializeObject(self, QuickTypeVProperty.Converter.Settings);
+        public static string ToJson(this VacantProperty[] self) => JsonConvert.SerializeObject(self, QuickTypeVProperty.Converter.Settings);
     }
 
     internal static class Converter

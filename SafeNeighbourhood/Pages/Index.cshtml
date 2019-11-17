@@ -2,8 +2,8 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
-    //var welcomes = (QuickTypeVProperty.VacantProperty) ViewData["Welcome"];
-    var welcomes = ViewData["Welcome"];
+    var welcomes = (QuickTypeVProperty.VacantProperty[]) ViewData["property"];
+ 
 }
 
 <div class="text-center">

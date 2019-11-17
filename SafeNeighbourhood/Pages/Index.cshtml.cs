@@ -18,7 +18,8 @@ namespace SafeNeighbourhood.Pages
                 string propertyData = webClient.DownloadString("https://data.cincinnati-oh.gov/resource/w3jp-dfxy.json");
 
                 var property = VacantProperty.FromJson(propertyData);
-                ViewData["Welcome"] = property;
+                ViewData["property"] = property;
+
             }
 
         }
