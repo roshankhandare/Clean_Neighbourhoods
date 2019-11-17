@@ -2,7 +2,8 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
-    List<QuickType.Property> allProperty = (List<QuickType.Property>)ViewData["allProperty"];
+    //var welcomes = (QuickTypeVProperty.VacantProperty) ViewData["Welcome"];
+    var welcomes = ViewData["Welcome"];
 }
 
 <div class="text-center">
@@ -19,7 +20,7 @@
             <th>Property ID</th>
         </tr>
         @{
-            @foreach (QuickType.Property property in allProperty)
+            @foreach (QuickTypeVProperty.VacantProperty property in welcomes)
             {
                 <tr>
                     <td>@property.Neighborhood</td>
