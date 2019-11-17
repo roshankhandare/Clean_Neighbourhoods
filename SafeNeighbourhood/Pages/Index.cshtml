@@ -2,36 +2,63 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
-    var welcomes = (QuickTypeVProperty.VacantProperty[]) ViewData["property"];
- 
+    //var welcomes = (QuickTypeVProperty.VacantProperty[]) ViewData["property"];
+    List<QuickTypeVProperty.VacantProperty> occupiedProperties = (List<QuickTypeVProperty.VacantProperty>) ViewData["occupiedProperties"];
+    List<QuickTypeVProperty.VacantProperty> vacantProperties = (List<QuickTypeVProperty.VacantProperty>) ViewData["vacantProperties"];
+
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-  
-    <table>
-        <tr>
-            <th>Neighbourhood</th>
-            <th>Longitude</th>
-            <th>Latitude</th>
-            <th>Street_Name</th>
-            <th>Street_Number</th>
-            <th>Property ID</th>
-        </tr>
-        @{
-            @foreach (QuickTypeVProperty.VacantProperty property in welcomes)
-            {
-                <tr>
-                    <td>@property.Neighborhood</td>
-                    <td>@property.Longitude</td>
-                    <td>@property.Latitude </td>
-                    <td>@property.StreetName</td>
-                    <td>@property.StreetNo</td>
-                    <td>@property.Uniqueid</td>
-                </tr>
+    <div class="text-center">
+        <h1 class="display-4">Welcome</h1>
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+        <h2>Vacant Properties</h2>
+        <table>
+            <tr>
+                <th>Neighbourhood</th>
+                <th>Longitude</th>
+                <th>Latitude</th>
+                <th>Street_Name</th>
+                <th>Street_Number</th>
+                <th>Property ID</th>
+            </tr>
+            @{
+                @foreach (QuickTypeVProperty.VacantProperty property in vacantProperties)
+                {
+                    <tr>
+                        <td>@property.Neighborhood</td>
+                        <td>@property.Longitude</td>
+                        <td>@property.Latitude </td>
+                        <td>@property.StreetName</td>
+                        <td>@property.StreetNo</td>
+                        <td>@property.Uniqueid</td>
+                    </tr>
+                }
             }
-        }
-    </table>
-    <br />
-</div>
+        </table>
+        <br />
+        <h2>Occupied Properties</h2>
+        <table>
+            <tr>
+                <th>Neighbourhood</th>
+                <th>Longitude</th>
+                <th>Latitude</th>
+                <th>Street_Name</th>
+                <th>Street_Number</th>
+                <th>Property ID</th>
+            </tr>
+            @{
+                @foreach (QuickTypeVProperty.VacantProperty property in occupiedProperties)
+                {
+                    <tr>
+                        <td>@property.Neighborhood</td>
+                        <td>@property.Longitude</td>
+                        <td>@property.Latitude </td>
+                        <td>@property.StreetName</td>
+                        <td>@property.StreetNo</td>
+                        <td>@property.Uniqueid</td>
+                    </tr>
+                }
+            }
+        </table>
+        <br />
+    </div>
