@@ -2,11 +2,11 @@
 //
 // To parse this JSON data, add NuGet 'Newtonsoft.Json' then do:
 //
-//    using QuickTypeVProperty;
+//    using QuicktypeProperty;
 //
-//    var vacantProperty = VacantProperty.FromJson(jsonString);
+//    var propertyData = PropertyData.FromJson(jsonString);
 
-namespace QuickTypeVProperty
+namespace QuicktypeProperty
 {
     using System;
     using System.Collections.Generic;
@@ -15,57 +15,57 @@ namespace QuickTypeVProperty
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
 
-    public partial class VacantProperty
+    public partial class PropertyData
     {
         [JsonProperty("objectid")]
         [JsonConverter(typeof(ParseStringConverter))]
         public long Objectid { get; set; }
 
         [JsonProperty("work_type")]
-        public WorkType WorkType { get; set; }
+        public string WorkType { get; set; }
 
         [JsonProperty("work_subtype")]
-        public WorkSubtype WorkSubtype { get; set; }
+        public string WorkSubtype { get; set; }
 
         [JsonProperty("display_agency")]
-        public DisplayAgency DisplayAgency { get; set; }
+        public string DisplayAgency { get; set; }
 
         [JsonProperty("number_key")]
         public string NumberKey { get; set; }
 
         [JsonProperty("comp_type")]
-        public CompType CompType { get; set; }
+        public string CompType { get; set; }
 
         [JsonProperty("comp_type_desc")]
-        public CompTypeDesc CompTypeDesc { get; set; }
+        public string CompTypeDesc { get; set; }
 
         [JsonProperty("sub_type")]
-        public SubType SubType { get; set; }
+        public string SubType { get; set; }
 
         [JsonProperty("sub_type_desc")]
-        public SubTypeDesc SubTypeDesc { get; set; }
+        public string SubTypeDesc { get; set; }
 
         [JsonProperty("entered_date")]
         public DateTimeOffset EnteredDate { get; set; }
 
         [JsonProperty("data_status")]
-        public DataStatus DataStatus { get; set; }
+        public string DataStatus { get; set; }
 
         [JsonProperty("data_status_display")]
-        public DataStatusDisplay DataStatusDisplay { get; set; }
+        public string DataStatusDisplay { get; set; }
 
-        [JsonProperty("status_class", NullValueHandling = NullValueHandling.Ignore)]
-        public StatusClass? StatusClass { get; set; }
+        [JsonProperty("status_class")]
+        public string StatusClass { get; set; }
 
-        [JsonProperty("street_no", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("street_no")]
         [JsonConverter(typeof(ParseStringConverter))]
-        public long? StreetNo { get; set; }
+        public long StreetNo { get; set; }
 
-        [JsonProperty("street_name", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("street_name")]
         public string StreetName { get; set; }
 
-        [JsonProperty("city_id", NullValueHandling = NullValueHandling.Ignore)]
-        public CityId? CityId { get; set; }
+        [JsonProperty("city_id")]
+        public string CityId { get; set; }
 
         [JsonProperty("x_coord")]
         [JsonConverter(typeof(ParseStringConverter))]
@@ -76,7 +76,7 @@ namespace QuickTypeVProperty
         public long YCoord { get; set; }
 
         [JsonProperty("wfdb")]
-        public Wfdb Wfdb { get; set; }
+        public string Wfdb { get; set; }
 
         [JsonProperty("url")]
         public Uri Url { get; set; }
@@ -85,7 +85,7 @@ namespace QuickTypeVProperty
         public DateTimeOffset LastUpdated { get; set; }
 
         [JsonProperty("yn_activity_report")]
-        public YnActivityReport YnActivityReport { get; set; }
+        public string YnActivityReport { get; set; }
 
         [JsonProperty("latitude")]
         public string Latitude { get; set; }
@@ -99,47 +99,16 @@ namespace QuickTypeVProperty
         [JsonProperty("uniqueid", NullValueHandling = NullValueHandling.Ignore)]
         [JsonConverter(typeof(ParseStringConverter))]
         public long? Uniqueid { get; set; }
-
-        [JsonProperty("street_direction", NullValueHandling = NullValueHandling.Ignore)]
-        public StreetDirection? StreetDirection { get; set; }
     }
 
-    public enum CityId { Cinc };
-
-    public enum CompType { Cbhvfpr };
-
-    public enum CompTypeDesc { VacantForeclosedPropertyRegistration };
-
-    public enum DataStatus { CivilNm, CivilNr, CloseO, CloseV, Forclosd, Registrd, Renewal, Void };
-
-    public enum DataStatusDisplay { CaseClosedBuildingOccupied, CaseClosedBuildingVacant, CaseVoided, OccupiedForeclosureFiledStillOccupied, RenewalOfPreviousYearRegistration, VacantNotMaintainedCivilFinePending, VacantNotRegisteredCivilFinePending, VacantRegisteredVacant };
-
-    public enum DisplayAgency { CincinnatiBuildingsAndInspections, CincinnatiTradeAndDevelopment };
-
-    public enum StatusClass { Clos, Open };
-
-    public enum StreetDirection { N, S, W };
-
-    public enum SubType { Foreclos, Transfrd, Year2, Year3, Year4 };
-
-    public enum SubTypeDesc { ForeclosedProperty, SubTypeDescForeclosedProperty, TitleTransferedToAffiliate, VfprFourthYearRegistration, VfprSecondYearRegistration, VfprThirdYearRegistration };
-
-    public enum Wfdb { City };
-
-    public enum WorkSubtype { VacantForeclosedPropertyRegistrations };
-
-    public enum WorkType { VacantForeclosedProptyProgram };
-
-    public enum YnActivityReport { Y };
-
-    public partial class VacantProperty
+    public partial class PropertyData
     {
-        public static VacantProperty[] FromJson(string json) => JsonConvert.DeserializeObject<VacantProperty[]>(json, QuickTypeVProperty.Converter.Settings);
+        public static List<PropertyData> FromJson(string json) => JsonConvert.DeserializeObject<List<PropertyData>>(json, QuicktypeProperty.Converter.Settings);
     }
 
     public static class Serialize
     {
-        public static string ToJson(this VacantProperty[] self) => JsonConvert.SerializeObject(self, QuickTypeVProperty.Converter.Settings);
+        public static string ToJson(this List<PropertyData> self) => JsonConvert.SerializeObject(self, QuicktypeProperty.Converter.Settings);
     }
 
     internal static class Converter
@@ -150,308 +119,9 @@ namespace QuickTypeVProperty
             DateParseHandling = DateParseHandling.None,
             Converters =
             {
-                CityIdConverter.Singleton,
-                CompTypeConverter.Singleton,
-                CompTypeDescConverter.Singleton,
-                DataStatusConverter.Singleton,
-                DataStatusDisplayConverter.Singleton,
-                DisplayAgencyConverter.Singleton,
-                StatusClassConverter.Singleton,
-                StreetDirectionConverter.Singleton,
-                SubTypeConverter.Singleton,
-                SubTypeDescConverter.Singleton,
-                WfdbConverter.Singleton,
-                WorkSubtypeConverter.Singleton,
-                WorkTypeConverter.Singleton,
-                YnActivityReportConverter.Singleton,
                 new IsoDateTimeConverter { DateTimeStyles = DateTimeStyles.AssumeUniversal }
             },
         };
-    }
-
-    internal class CityIdConverter : JsonConverter
-    {
-        public override bool CanConvert(Type t) => t == typeof(CityId) || t == typeof(CityId?);
-
-        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.TokenType == JsonToken.Null) return null;
-            var value = serializer.Deserialize<string>(reader);
-            if (value == "CINC")
-            {
-                return CityId.Cinc;
-            }
-            throw new Exception("Cannot unmarshal type CityId");
-        }
-
-        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
-        {
-            if (untypedValue == null)
-            {
-                serializer.Serialize(writer, null);
-                return;
-            }
-            var value = (CityId)untypedValue;
-            if (value == CityId.Cinc)
-            {
-                serializer.Serialize(writer, "CINC");
-                return;
-            }
-            throw new Exception("Cannot marshal type CityId");
-        }
-
-        public static readonly CityIdConverter Singleton = new CityIdConverter();
-    }
-
-    internal class CompTypeConverter : JsonConverter
-    {
-        public override bool CanConvert(Type t) => t == typeof(CompType) || t == typeof(CompType?);
-
-        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.TokenType == JsonToken.Null) return null;
-            var value = serializer.Deserialize<string>(reader);
-            if (value == "CBHVFPR")
-            {
-                return CompType.Cbhvfpr;
-            }
-            throw new Exception("Cannot unmarshal type CompType");
-        }
-
-        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
-        {
-            if (untypedValue == null)
-            {
-                serializer.Serialize(writer, null);
-                return;
-            }
-            var value = (CompType)untypedValue;
-            if (value == CompType.Cbhvfpr)
-            {
-                serializer.Serialize(writer, "CBHVFPR");
-                return;
-            }
-            throw new Exception("Cannot marshal type CompType");
-        }
-
-        public static readonly CompTypeConverter Singleton = new CompTypeConverter();
-    }
-
-    internal class CompTypeDescConverter : JsonConverter
-    {
-        public override bool CanConvert(Type t) => t == typeof(CompTypeDesc) || t == typeof(CompTypeDesc?);
-
-        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.TokenType == JsonToken.Null) return null;
-            var value = serializer.Deserialize<string>(reader);
-            if (value == "Vacant Foreclosed Property Registration")
-            {
-                return CompTypeDesc.VacantForeclosedPropertyRegistration;
-            }
-            throw new Exception("Cannot unmarshal type CompTypeDesc");
-        }
-
-        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
-        {
-            if (untypedValue == null)
-            {
-                serializer.Serialize(writer, null);
-                return;
-            }
-            var value = (CompTypeDesc)untypedValue;
-            if (value == CompTypeDesc.VacantForeclosedPropertyRegistration)
-            {
-                serializer.Serialize(writer, "Vacant Foreclosed Property Registration");
-                return;
-            }
-            throw new Exception("Cannot marshal type CompTypeDesc");
-        }
-
-        public static readonly CompTypeDescConverter Singleton = new CompTypeDescConverter();
-    }
-
-    internal class DataStatusConverter : JsonConverter
-    {
-        public override bool CanConvert(Type t) => t == typeof(DataStatus) || t == typeof(DataStatus?);
-
-        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.TokenType == JsonToken.Null) return null;
-            var value = serializer.Deserialize<string>(reader);
-            switch (value)
-            {
-                case "CIVIL-NM":
-                    return DataStatus.CivilNm;
-                case "CIVIL-NR":
-                    return DataStatus.CivilNr;
-                case "CLOSE-O":
-                    return DataStatus.CloseO;
-                case "CLOSE-V":
-                    return DataStatus.CloseV;
-                case "FORCLOSD":
-                    return DataStatus.Forclosd;
-                case "REGISTRD":
-                    return DataStatus.Registrd;
-                case "RENEWAL":
-                    return DataStatus.Renewal;
-                case "VOID":
-                    return DataStatus.Void;
-            }
-            throw new Exception("Cannot unmarshal type DataStatus");
-        }
-
-        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
-        {
-            if (untypedValue == null)
-            {
-                serializer.Serialize(writer, null);
-                return;
-            }
-            var value = (DataStatus)untypedValue;
-            switch (value)
-            {
-                case DataStatus.CivilNm:
-                    serializer.Serialize(writer, "CIVIL-NM");
-                    return;
-                case DataStatus.CivilNr:
-                    serializer.Serialize(writer, "CIVIL-NR");
-                    return;
-                case DataStatus.CloseO:
-                    serializer.Serialize(writer, "CLOSE-O");
-                    return;
-                case DataStatus.CloseV:
-                    serializer.Serialize(writer, "CLOSE-V");
-                    return;
-                case DataStatus.Forclosd:
-                    serializer.Serialize(writer, "FORCLOSD");
-                    return;
-                case DataStatus.Registrd:
-                    serializer.Serialize(writer, "REGISTRD");
-                    return;
-                case DataStatus.Renewal:
-                    serializer.Serialize(writer, "RENEWAL");
-                    return;
-                case DataStatus.Void:
-                    serializer.Serialize(writer, "VOID");
-                    return;
-            }
-            throw new Exception("Cannot marshal type DataStatus");
-        }
-
-        public static readonly DataStatusConverter Singleton = new DataStatusConverter();
-    }
-
-    internal class DataStatusDisplayConverter : JsonConverter
-    {
-        public override bool CanConvert(Type t) => t == typeof(DataStatusDisplay) || t == typeof(DataStatusDisplay?);
-
-        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.TokenType == JsonToken.Null) return null;
-            var value = serializer.Deserialize<string>(reader);
-            switch (value)
-            {
-                case "Case Closed - Building Occupied":
-                    return DataStatusDisplay.CaseClosedBuildingOccupied;
-                case "Case Closed - Building Vacant":
-                    return DataStatusDisplay.CaseClosedBuildingVacant;
-                case "Case Voided":
-                    return DataStatusDisplay.CaseVoided;
-                case "Occupied - Foreclosure Filed - Still Occupied":
-                    return DataStatusDisplay.OccupiedForeclosureFiledStillOccupied;
-                case "Renewal of Previous Year Registration":
-                    return DataStatusDisplay.RenewalOfPreviousYearRegistration;
-                case "Vacant - Not Maintained - Civil Fine Pending":
-                    return DataStatusDisplay.VacantNotMaintainedCivilFinePending;
-                case "Vacant - Not Registered - Civil Fine Pending":
-                    return DataStatusDisplay.VacantNotRegisteredCivilFinePending;
-                case "Vacant - Registered Vacant":
-                    return DataStatusDisplay.VacantRegisteredVacant;
-            }
-            throw new Exception("Cannot unmarshal type DataStatusDisplay");
-        }
-
-        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
-        {
-            if (untypedValue == null)
-            {
-                serializer.Serialize(writer, null);
-                return;
-            }
-            var value = (DataStatusDisplay)untypedValue;
-            switch (value)
-            {
-                case DataStatusDisplay.CaseClosedBuildingOccupied:
-                    serializer.Serialize(writer, "Case Closed - Building Occupied");
-                    return;
-                case DataStatusDisplay.CaseClosedBuildingVacant:
-                    serializer.Serialize(writer, "Case Closed - Building Vacant");
-                    return;
-                case DataStatusDisplay.CaseVoided:
-                    serializer.Serialize(writer, "Case Voided");
-                    return;
-                case DataStatusDisplay.OccupiedForeclosureFiledStillOccupied:
-                    serializer.Serialize(writer, "Occupied - Foreclosure Filed - Still Occupied");
-                    return;
-                case DataStatusDisplay.RenewalOfPreviousYearRegistration:
-                    serializer.Serialize(writer, "Renewal of Previous Year Registration");
-                    return;
-                case DataStatusDisplay.VacantNotMaintainedCivilFinePending:
-                    serializer.Serialize(writer, "Vacant - Not Maintained - Civil Fine Pending");
-                    return;
-                case DataStatusDisplay.VacantNotRegisteredCivilFinePending:
-                    serializer.Serialize(writer, "Vacant - Not Registered - Civil Fine Pending");
-                    return;
-                case DataStatusDisplay.VacantRegisteredVacant:
-                    serializer.Serialize(writer, "Vacant - Registered Vacant");
-                    return;
-            }
-            throw new Exception("Cannot marshal type DataStatusDisplay");
-        }
-
-        public static readonly DataStatusDisplayConverter Singleton = new DataStatusDisplayConverter();
-    }
-
-    internal class DisplayAgencyConverter : JsonConverter
-    {
-        public override bool CanConvert(Type t) => t == typeof(DisplayAgency) || t == typeof(DisplayAgency?);
-
-        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.TokenType == JsonToken.Null) return null;
-            var value = serializer.Deserialize<string>(reader);
-            switch (value)
-            {
-                case "Cincinnati Buildings and Inspections":
-                    return DisplayAgency.CincinnatiBuildingsAndInspections;
-                case "Cincinnati Trade and Development":
-                    return DisplayAgency.CincinnatiTradeAndDevelopment;
-            }
-            throw new Exception("Cannot unmarshal type DisplayAgency");
-        }
-
-        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
-        {
-            if (untypedValue == null)
-            {
-                serializer.Serialize(writer, null);
-                return;
-            }
-            var value = (DisplayAgency)untypedValue;
-            switch (value)
-            {
-                case DisplayAgency.CincinnatiBuildingsAndInspections:
-                    serializer.Serialize(writer, "Cincinnati Buildings and Inspections");
-                    return;
-                case DisplayAgency.CincinnatiTradeAndDevelopment:
-                    serializer.Serialize(writer, "Cincinnati Trade and Development");
-                    return;
-            }
-            throw new Exception("Cannot marshal type DisplayAgency");
-        }
-
-        public static readonly DisplayAgencyConverter Singleton = new DisplayAgencyConverter();
     }
 
     internal class ParseStringConverter : JsonConverter
@@ -483,345 +153,5 @@ namespace QuickTypeVProperty
         }
 
         public static readonly ParseStringConverter Singleton = new ParseStringConverter();
-    }
-
-    internal class StatusClassConverter : JsonConverter
-    {
-        public override bool CanConvert(Type t) => t == typeof(StatusClass) || t == typeof(StatusClass?);
-
-        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.TokenType == JsonToken.Null) return null;
-            var value = serializer.Deserialize<string>(reader);
-            switch (value)
-            {
-                case "CLOS":
-                    return StatusClass.Clos;
-                case "OPEN":
-                    return StatusClass.Open;
-            }
-            throw new Exception("Cannot unmarshal type StatusClass");
-        }
-
-        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
-        {
-            if (untypedValue == null)
-            {
-                serializer.Serialize(writer, null);
-                return;
-            }
-            var value = (StatusClass)untypedValue;
-            switch (value)
-            {
-                case StatusClass.Clos:
-                    serializer.Serialize(writer, "CLOS");
-                    return;
-                case StatusClass.Open:
-                    serializer.Serialize(writer, "OPEN");
-                    return;
-            }
-            throw new Exception("Cannot marshal type StatusClass");
-        }
-
-        public static readonly StatusClassConverter Singleton = new StatusClassConverter();
-    }
-
-    internal class StreetDirectionConverter : JsonConverter
-    {
-        public override bool CanConvert(Type t) => t == typeof(StreetDirection) || t == typeof(StreetDirection?);
-
-        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.TokenType == JsonToken.Null) return null;
-            var value = serializer.Deserialize<string>(reader);
-            switch (value)
-            {
-                case "N":
-                    return StreetDirection.N;
-                case "S":
-                    return StreetDirection.S;
-                case "W":
-                    return StreetDirection.W;
-            }
-            throw new Exception("Cannot unmarshal type StreetDirection");
-        }
-
-        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
-        {
-            if (untypedValue == null)
-            {
-                serializer.Serialize(writer, null);
-                return;
-            }
-            var value = (StreetDirection)untypedValue;
-            switch (value)
-            {
-                case StreetDirection.N:
-                    serializer.Serialize(writer, "N");
-                    return;
-                case StreetDirection.S:
-                    serializer.Serialize(writer, "S");
-                    return;
-                case StreetDirection.W:
-                    serializer.Serialize(writer, "W");
-                    return;
-            }
-            throw new Exception("Cannot marshal type StreetDirection");
-        }
-
-        public static readonly StreetDirectionConverter Singleton = new StreetDirectionConverter();
-    }
-
-    internal class SubTypeConverter : JsonConverter
-    {
-        public override bool CanConvert(Type t) => t == typeof(SubType) || t == typeof(SubType?);
-
-        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.TokenType == JsonToken.Null) return null;
-            var value = serializer.Deserialize<string>(reader);
-            switch (value)
-            {
-                case "FORECLOS":
-                    return SubType.Foreclos;
-                case "TRANSFRD":
-                    return SubType.Transfrd;
-                case "YEAR-2":
-                    return SubType.Year2;
-                case "YEAR-3":
-                    return SubType.Year3;
-                case "YEAR-4":
-                    return SubType.Year4;
-            }
-            throw new Exception("Cannot unmarshal type SubType");
-        }
-
-        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
-        {
-            if (untypedValue == null)
-            {
-                serializer.Serialize(writer, null);
-                return;
-            }
-            var value = (SubType)untypedValue;
-            switch (value)
-            {
-                case SubType.Foreclos:
-                    serializer.Serialize(writer, "FORECLOS");
-                    return;
-                case SubType.Transfrd:
-                    serializer.Serialize(writer, "TRANSFRD");
-                    return;
-                case SubType.Year2:
-                    serializer.Serialize(writer, "YEAR-2");
-                    return;
-                case SubType.Year3:
-                    serializer.Serialize(writer, "YEAR-3");
-                    return;
-                case SubType.Year4:
-                    serializer.Serialize(writer, "YEAR-4");
-                    return;
-            }
-            throw new Exception("Cannot marshal type SubType");
-        }
-
-        public static readonly SubTypeConverter Singleton = new SubTypeConverter();
-    }
-
-    internal class SubTypeDescConverter : JsonConverter
-    {
-        public override bool CanConvert(Type t) => t == typeof(SubTypeDesc) || t == typeof(SubTypeDesc?);
-
-        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.TokenType == JsonToken.Null) return null;
-            var value = serializer.Deserialize<string>(reader);
-            switch (value)
-            {
-                case "FORECLOSED PROPERTY":
-                    return SubTypeDesc.ForeclosedProperty;
-                case "Foreclosed Property":
-                    return SubTypeDesc.SubTypeDescForeclosedProperty;
-                case "Title transfered to affiliate":
-                    return SubTypeDesc.TitleTransferedToAffiliate;
-                case "VFPR Fourth Year Registration":
-                    return SubTypeDesc.VfprFourthYearRegistration;
-                case "VFPR Second Year Registration":
-                    return SubTypeDesc.VfprSecondYearRegistration;
-                case "VFPR Third Year Registration":
-                    return SubTypeDesc.VfprThirdYearRegistration;
-            }
-            throw new Exception("Cannot unmarshal type SubTypeDesc");
-        }
-
-        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
-        {
-            if (untypedValue == null)
-            {
-                serializer.Serialize(writer, null);
-                return;
-            }
-            var value = (SubTypeDesc)untypedValue;
-            switch (value)
-            {
-                case SubTypeDesc.ForeclosedProperty:
-                    serializer.Serialize(writer, "FORECLOSED PROPERTY");
-                    return;
-                case SubTypeDesc.SubTypeDescForeclosedProperty:
-                    serializer.Serialize(writer, "Foreclosed Property");
-                    return;
-                case SubTypeDesc.TitleTransferedToAffiliate:
-                    serializer.Serialize(writer, "Title transfered to affiliate");
-                    return;
-                case SubTypeDesc.VfprFourthYearRegistration:
-                    serializer.Serialize(writer, "VFPR Fourth Year Registration");
-                    return;
-                case SubTypeDesc.VfprSecondYearRegistration:
-                    serializer.Serialize(writer, "VFPR Second Year Registration");
-                    return;
-                case SubTypeDesc.VfprThirdYearRegistration:
-                    serializer.Serialize(writer, "VFPR Third Year Registration");
-                    return;
-            }
-            throw new Exception("Cannot marshal type SubTypeDesc");
-        }
-
-        public static readonly SubTypeDescConverter Singleton = new SubTypeDescConverter();
-    }
-
-    internal class WfdbConverter : JsonConverter
-    {
-        public override bool CanConvert(Type t) => t == typeof(Wfdb) || t == typeof(Wfdb?);
-
-        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.TokenType == JsonToken.Null) return null;
-            var value = serializer.Deserialize<string>(reader);
-            if (value == "CITY")
-            {
-                return Wfdb.City;
-            }
-            throw new Exception("Cannot unmarshal type Wfdb");
-        }
-
-        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
-        {
-            if (untypedValue == null)
-            {
-                serializer.Serialize(writer, null);
-                return;
-            }
-            var value = (Wfdb)untypedValue;
-            if (value == Wfdb.City)
-            {
-                serializer.Serialize(writer, "CITY");
-                return;
-            }
-            throw new Exception("Cannot marshal type Wfdb");
-        }
-
-        public static readonly WfdbConverter Singleton = new WfdbConverter();
-    }
-
-    internal class WorkSubtypeConverter : JsonConverter
-    {
-        public override bool CanConvert(Type t) => t == typeof(WorkSubtype) || t == typeof(WorkSubtype?);
-
-        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.TokenType == JsonToken.Null) return null;
-            var value = serializer.Deserialize<string>(reader);
-            if (value == "Vacant Foreclosed Property Registrations")
-            {
-                return WorkSubtype.VacantForeclosedPropertyRegistrations;
-            }
-            throw new Exception("Cannot unmarshal type WorkSubtype");
-        }
-
-        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
-        {
-            if (untypedValue == null)
-            {
-                serializer.Serialize(writer, null);
-                return;
-            }
-            var value = (WorkSubtype)untypedValue;
-            if (value == WorkSubtype.VacantForeclosedPropertyRegistrations)
-            {
-                serializer.Serialize(writer, "Vacant Foreclosed Property Registrations");
-                return;
-            }
-            throw new Exception("Cannot marshal type WorkSubtype");
-        }
-
-        public static readonly WorkSubtypeConverter Singleton = new WorkSubtypeConverter();
-    }
-
-    internal class WorkTypeConverter : JsonConverter
-    {
-        public override bool CanConvert(Type t) => t == typeof(WorkType) || t == typeof(WorkType?);
-
-        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.TokenType == JsonToken.Null) return null;
-            var value = serializer.Deserialize<string>(reader);
-            if (value == "VACANT FORECLOSED PROPTY PROGRAM")
-            {
-                return WorkType.VacantForeclosedProptyProgram;
-            }
-            throw new Exception("Cannot unmarshal type WorkType");
-        }
-
-        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
-        {
-            if (untypedValue == null)
-            {
-                serializer.Serialize(writer, null);
-                return;
-            }
-            var value = (WorkType)untypedValue;
-            if (value == WorkType.VacantForeclosedProptyProgram)
-            {
-                serializer.Serialize(writer, "VACANT FORECLOSED PROPTY PROGRAM");
-                return;
-            }
-            throw new Exception("Cannot marshal type WorkType");
-        }
-
-        public static readonly WorkTypeConverter Singleton = new WorkTypeConverter();
-    }
-
-    internal class YnActivityReportConverter : JsonConverter
-    {
-        public override bool CanConvert(Type t) => t == typeof(YnActivityReport) || t == typeof(YnActivityReport?);
-
-        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.TokenType == JsonToken.Null) return null;
-            var value = serializer.Deserialize<string>(reader);
-            if (value == "Y")
-            {
-                return YnActivityReport.Y;
-            }
-            throw new Exception("Cannot unmarshal type YnActivityReport");
-        }
-
-        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
-        {
-            if (untypedValue == null)
-            {
-                serializer.Serialize(writer, null);
-                return;
-            }
-            var value = (YnActivityReport)untypedValue;
-            if (value == YnActivityReport.Y)
-            {
-                serializer.Serialize(writer, "Y");
-                return;
-            }
-            throw new Exception("Cannot marshal type YnActivityReport");
-        }
-
-        public static readonly YnActivityReportConverter Singleton = new YnActivityReportConverter();
     }
 }
