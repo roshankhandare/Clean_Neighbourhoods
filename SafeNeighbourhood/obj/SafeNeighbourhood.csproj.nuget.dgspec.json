@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\rosha\\source\\repos\\Clean_Neighbourhoods\\SafeNeighbourhood\\SafeNeighbourhood.csproj": {}
+    "C:\\Users\\Nikita\\Documents\\GitHub\\Clean_Neighbourhoods\\SafeNeighbourhood\\SafeNeighbourhood.csproj": {}
   },
   "projects": {
-    "C:\\Users\\rosha\\source\\repos\\Clean_Neighbourhoods\\SafeNeighbourhood\\SafeNeighbourhood.csproj": {
+    "C:\\Users\\Nikita\\Documents\\GitHub\\Clean_Neighbourhoods\\SafeNeighbourhood\\SafeNeighbourhood.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\rosha\\source\\repos\\Clean_Neighbourhoods\\SafeNeighbourhood\\SafeNeighbourhood.csproj",
+        "projectUniqueName": "C:\\Users\\Nikita\\Documents\\GitHub\\Clean_Neighbourhoods\\SafeNeighbourhood\\SafeNeighbourhood.csproj",
         "projectName": "SafeNeighbourhood",
-        "projectPath": "C:\\Users\\rosha\\source\\repos\\Clean_Neighbourhoods\\SafeNeighbourhood\\SafeNeighbourhood.csproj",
-        "packagesPath": "C:\\Users\\rosha\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\rosha\\source\\repos\\Clean_Neighbourhoods\\SafeNeighbourhood\\obj\\",
+        "projectPath": "C:\\Users\\Nikita\\Documents\\GitHub\\Clean_Neighbourhoods\\SafeNeighbourhood\\SafeNeighbourhood.csproj",
+        "packagesPath": "C:\\Users\\Nikita\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Nikita\\Documents\\GitHub\\Clean_Neighbourhoods\\SafeNeighbourhood\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\rosha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Nikita\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

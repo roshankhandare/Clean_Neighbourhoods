@@ -10,7 +10,7 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
   
-    <table>
+    <table class="table"> <!-- to improve UI-->
         <tr>
             <th>Neighbourhood</th>
             <th>Longitude</th>
@@ -19,19 +19,20 @@
             <th>Street_Number</th>
             <th>Property ID</th>
         </tr>
-        @{
-            @foreach (QuickTypeVProperty.VacantProperty property in welcomes)
+        
+           @foreach (QuickTypeVProperty.VacantProperty property in welcomes)
+
             {
-                <tr>
-                    <td>@property.Neighborhood</td>
-                    <td>@property.Longitude</td>
-                    <td>@property.Latitude </td>
-                    <td>@property.StreetName</td>
-                    <td>@property.StreetNo</td>
-                    <td>@property.Uniqueid</td>
-                </tr>
+            <tr>
+                <td>@property.Neighborhood</td>
+                <td>@property.Longitude</td>
+                <td>@property.Latitude </td>
+                <td>@property.StreetName</td>
+                <td>@property.StreetNo</td>
+                <td>@property.Uniqueid</td>
+            </tr>
             }
-        }
+        
     </table>
     <br />
 </div>
