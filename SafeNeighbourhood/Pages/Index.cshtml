@@ -6,53 +6,55 @@
     var neighborhoods = (List<QuicktypeNeighborhood.NeighborhoodData>)ViewData["Neighborhoods"];
 }
 
-<div class="table-responsive">
-    <h2>Vacant Homes in Cincinnati by Neighborhood Cleanliness</h2>
-    <p>(Neighborhoods with the least number of complaints at the top.  Data since 2012)</p>
-  
-    <table class="table table-bordered">
-        @{foreach (QuicktypeNeighborhood.NeighborhoodData neighborhood in neighborhoods)
-              {
-                IEnumerable<QuicktypeProperty.PropertyData> vacantPropertiesInNeighborhood = vacantProperties.Where(property => property.Neighborhood.Equals(neighborhood.Neighborhood));
+    <div class="table-responsive">
+        <div class='tableauPlaceholder' id='viz1575148011392' style='position: relative'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Pr&#47;PropertyData_15751443223640&#47;Sheet2&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz' style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='PropertyData_15751443223640&#47;Sheet2' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Pr&#47;PropertyData_15751443223640&#47;Sheet2&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /></object></div>
+        <script type='text/javascript'>var divElement = document.getElementById('viz1575148011392');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);</script>
+        <h2>Vacant Homes in Cincinnati by Neighborhood Cleanliness</h2>
+        <p>(Neighborhoods with the least number of complaints at the top.  Data since 2012)</p>
 
-                if (vacantPropertiesInNeighborhood.Any())
+        <table class="table table-bordered">
+            @{foreach (QuicktypeNeighborhood.NeighborhoodData neighborhood in neighborhoods)
                 {
-                <thead class="thead-dark">
-                    <tr>
-                        <th>Neighborhood</th>
-                        <th>Number of Cleanliness Complaints</th>
-                    </tr>
-                </thead>
-                    <tr>
-                        <td><strong>@neighborhood.Neighborhood</strong></td>
-                        <td>@neighborhood.Wfdb</td>
-                    </tr>
-                    <tr class="table-secondary">
-                        <th>Property ID</th>
-                        <th>Street Number</th>
-                        <th>Street Name</th>
-                        <th>Neighborhood</th>
-                        <th>Official Status</th>
-                        <th>URL</th>
-                    </tr>
+                    IEnumerable<QuicktypeProperty.PropertyData> vacantPropertiesInNeighborhood = vacantProperties.Where(property => property.Neighborhood.Equals(neighborhood.Neighborhood));
 
-                    foreach (QuicktypeProperty.PropertyData property in vacantPropertiesInNeighborhood)
+                    if (vacantPropertiesInNeighborhood.Any())
                     {
-                    <tr>
-                        <td>@property.Uniqueid</td>
-                        <td>@property.StreetNo</td>
-                        <td>@property.StreetName</td>
-                        <td>@property.Neighborhood</td>                        
-                        <td>@property.DataStatusDisplay</td>
-                        <td><a href="@property.Url">@property.Url</a></td>
-                    </tr>
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Neighborhood</th>
+                                <th>Number of Cleanliness Complaints</th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <td><strong>@neighborhood.Neighborhood</strong></td>
+                            <td>@neighborhood.Wfdb</td>
+                        </tr>
+                        <tr class="table-secondary">
+                            <th>Property ID</th>
+                            <th>Street Number</th>
+                            <th>Street Name</th>
+                            <th>Neighborhood</th>
+                            <th>Official Status</th>
+                            <th>URL</th>
+                        </tr>
+
+                        foreach (QuicktypeProperty.PropertyData property in vacantPropertiesInNeighborhood)
+                        {
+                            <tr>
+                                <td>@property.Uniqueid</td>
+                                <td>@property.StreetNo</td>
+                                <td>@property.StreetName</td>
+                                <td>@property.Neighborhood</td>
+                                <td>@property.DataStatusDisplay</td>
+                                <td><a href="@property.Url">@property.Url</a></td>
+                            </tr>
+                        }
+                        <tr>
+                            <td> </td>
+                        </tr>
                     }
-                    <tr>
-                        <td> </td>
-                    </tr>
                 }
-              }
-          }
-    </table>
-    <br />
-</div>
+            }
+        </table>
+        <br />
+    </div>
