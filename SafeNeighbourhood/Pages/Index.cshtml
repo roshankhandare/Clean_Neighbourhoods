@@ -5,56 +5,76 @@
     var vacantProperties = (IEnumerable<QuicktypeProperty.PropertyData>)ViewData["VacantProperties"];
     var neighborhoods = (List<QuicktypeNeighborhood.NeighborhoodData>)ViewData["Neighborhoods"];
 }
+    <div>
+        <input type="radio" name="r1" value="street" onclick="changeView()"> Street View<br />
+        <input type="radio" name="r1" value="satellite" onclick="changeView()"> Satellite View<br>
+    </div>
+<div class="table-responsive">
+    <div class="tableauPlaceholder" id="viz1575168571261" style="position: relative; width: 100%; height: 400.5px; overflow: hidden; display: block;">
+        <noscript>
+            <a href='#'>
+                <img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Cl&#47;CleanvsUncleanNeighbourhoods&#47;Sheet1&#47;1_rss.png' style='border: none' />
+            </a>
+        </noscript>
+        <script src="https://public.tableau.com/javascripts/api/viz_v1.js"></script><iframe frameborder="0" marginheight="0" marginwidth="0" title="Data Visualization" allowtransparency="true" allowfullscreen="true" class="tableauViz" style="display: block; width: 100%; height: 832.5px; margin: 0px; padding: 0px; border: none;" src="https://public.tableau.com/views/CleanvsUncleanNeighbourhoods/Sheet1?:embed=y&amp;:showVizHome=no&amp;:host_url=https%3A%2F%2Fpublic.tableau.com%2F&amp;:embed_code_version=3&amp;:tabs=no&amp;:toolbar=yes&amp;:animate_transition=yes&amp;:display_static_image=no&amp;:display_spinner=no&amp;:display_overlay=yes&amp;:display_count=yes&amp;publish=yes&amp;:loadOrderID=0"></iframe>
+    </div>
+    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+    <param name='embed_code_version' value='3' /> <param name='site_root' value='' />
+    <param name='name' value='CleanvsUncleanNeighbourhoods&#47;Sheet1' /><param name='tabs' value='no' />
+    <param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Cl&#47;CleanvsUncleanNeighbourhoods&#47;Sheet1&#47;1.png' /> <param name='animate_transition' value='yes' />
+    <param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='filter' value='publish=yes' /></object>
+</div>
+<script type='text/javascript'>
+        var divElement = document.getElementById('viz1575171099074');
+        var vizElement = divElement.getElementsByTagName('object')[0]; vizElement.style.width = '100%'; vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px'; var scriptElement = document.createElement('script');
+        scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement);</script>
 
-    <div class="table-responsive">
-        <div class='tableauPlaceholder' id='viz1575148011392' style='position: relative'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Pr&#47;PropertyData_15751443223640&#47;Sheet2&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz' style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='PropertyData_15751443223640&#47;Sheet2' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Pr&#47;PropertyData_15751443223640&#47;Sheet2&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /></object></div>
-        <script type='text/javascript'>var divElement = document.getElementById('viz1575148011392');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);</script>
-        <h2>Vacant Homes in Cincinnati by Neighborhood Cleanliness</h2>
-        <p>(Neighborhoods with the least number of complaints at the top.  Data since 2012)</p>
+<h2>Vacant Homes in Cincinnati by Neighborhood Cleanliness</h2>
+<p>(Neighborhoods with the least number of complaints at the top.  Data since 2012)</p>
 
-        <table class="table table-bordered">
-            @{foreach (QuicktypeNeighborhood.NeighborhoodData neighborhood in neighborhoods)
+<table class="table table-bordered">
+    @{foreach (QuicktypeNeighborhood.NeighborhoodData neighborhood in neighborhoods)
+        {
+            IEnumerable<QuicktypeProperty.PropertyData> vacantPropertiesInNeighborhood = vacantProperties.Where(property => property.Neighborhood.Equals(neighborhood.Neighborhood));
+
+            if (vacantPropertiesInNeighborhood.Any())
+            {
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Neighborhood</th>
+                        <th>Number of Cleanliness Complaints</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td><strong>@neighborhood.Neighborhood</strong></td>
+                    <td>@neighborhood.Wfdb</td>
+                </tr>
+                <tr class="table-secondary">
+                    <th>Property ID</th>
+                    <th>Street Number</th>
+                    <th>Street Name</th>
+                    <th>Neighborhood</th>
+                    <th>Official Status</th>
+                    <th>URL</th>
+                </tr>
+
+                foreach (QuicktypeProperty.PropertyData property in vacantPropertiesInNeighborhood)
                 {
-                    IEnumerable<QuicktypeProperty.PropertyData> vacantPropertiesInNeighborhood = vacantProperties.Where(property => property.Neighborhood.Equals(neighborhood.Neighborhood));
-
-                    if (vacantPropertiesInNeighborhood.Any())
-                    {
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>Neighborhood</th>
-                                <th>Number of Cleanliness Complaints</th>
-                            </tr>
-                        </thead>
-                        <tr>
-                            <td><strong>@neighborhood.Neighborhood</strong></td>
-                            <td>@neighborhood.Wfdb</td>
-                        </tr>
-                        <tr class="table-secondary">
-                            <th>Property ID</th>
-                            <th>Street Number</th>
-                            <th>Street Name</th>
-                            <th>Neighborhood</th>
-                            <th>Official Status</th>
-                            <th>URL</th>
-                        </tr>
-
-                        foreach (QuicktypeProperty.PropertyData property in vacantPropertiesInNeighborhood)
-                        {
-                            <tr>
-                                <td>@property.Uniqueid</td>
-                                <td>@property.StreetNo</td>
-                                <td>@property.StreetName</td>
-                                <td>@property.Neighborhood</td>
-                                <td>@property.DataStatusDisplay</td>
-                                <td><a href="@property.Url">@property.Url</a></td>
-                            </tr>
-                        }
-                        <tr>
-                            <td> </td>
-                        </tr>
-                    }
+                    <tr>
+                        <td>@property.Uniqueid</td>
+                        <td>@property.StreetNo</td>
+                        <td>@property.StreetName</td>
+                        <td>@property.Neighborhood</td>
+                        <td>@property.DataStatusDisplay</td>
+                        <td><a href="@property.Url">@property.Url</a></td>
+                    </tr>
                 }
+                <tr>
+                    <td> </td>
+                </tr>
             }
-        </table>
-        <br />
+        }
+    }
+</table>
+<br />
     </div>
