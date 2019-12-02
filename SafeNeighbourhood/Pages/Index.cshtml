@@ -5,104 +5,92 @@
     var vacantProperties = (IEnumerable<QuicktypeProperty.PropertyData>)ViewData["VacantProperties"];
     var neighborhoods = (List<QuicktypeNeighborhood.NeighborhoodData>)ViewData["Neighborhoods"];
 }
+
 <h2>Vacant Homes in Cincinnati by Neighborhood Cleanliness</h2>
 <p>(Data since 2012)</p>
-
-<div class="table-responsive" style="float:left"> 
-    <div class="tableauPlaceholder" id="viz1575168571261" style="position: relative; width: 100%; height: 400.5px; overflow: hidden; display: block;">
-        <noscript>
-            <a href='#'>
-                <img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Cl&#47;CleanvsUncleanNeighbourhoods&#47;Sheet1&#47;1_rss.png' style='border: none' />
-            </a>
-        </noscript>
-        <script src="https://public.tableau.com/javascripts/api/viz_v1.js"></script><iframe frameborder="0" marginheight="0" marginwidth="0" title="Data Visualization" allowtransparency="true" allowfullscreen="true" class="tableauViz" style="display: block; width: 100%; height: 832.5px; margin: 0px; padding: 0px; border: none;" src="https://public.tableau.com/views/CleanvsUncleanNeighbourhoods/Sheet1?:embed=y&amp;:showVizHome=no&amp;:host_url=https%3A%2F%2Fpublic.tableau.com%2F&amp;:embed_code_version=3&amp;:tabs=no&amp;:toolbar=yes&amp;:animate_transition=yes&amp;:display_static_image=no&amp;:display_spinner=no&amp;:display_overlay=yes&amp;:display_count=yes&amp;publish=yes&amp;:loadOrderID=0"></iframe>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="w3-container">
+    <div class="w3-padding w3-xlarge w3-teal">
+        <i class="fa fa-search"></i>
+        <i class="fa fa-globe"></i>
+        <i class="fa fa-handshake-o"></i>
+        <i class="fa fa-street-view"></i>
+        <i class="fa fa-archive"></i>
     </div>
-    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
-    <param name='embed_code_version' value='3' /> <param name='site_root' value='' />
-    <param name='name' value='CleanvsUncleanNeighbourhoods&#47;Sheet1' /><param name='tabs' value='no' />
-    <param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Cl&#47;CleanvsUncleanNeighbourhoods&#47;Sheet1&#47;1.png' /> <param name='animate_transition' value='yes' />
-    <param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='filter' value='publish=yes' /></object>
-</div>
-<div style="float:right">
-    <input type="radio" name="r1" value="street" onclick="changeView()"> Street View<br />
-    <input type="radio" name="r1" value="satellite" onclick="changeView()"> Satellite View<br>
-</div>
-<script type='text/javascript'>
-    var divElement = document.getElementById('viz1575171099074');
-    var vizElement = divElement.getElementsByTagName('object')[0]; vizElement.style.width = '100%'; vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px'; var scriptElement = document.createElement('script');
-    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement);</script>
+   
+    <h3>Search for a Neighborhood by Name</h3>
+    <input id="list" list="Ndata" style="width: 200px" />
+    <datalist id="Ndata">
+    </datalist>
+    <input type="button" id="submit" value="Search" />
+    <input type="button" id="clear" value="Clear" />
+    <br />
+    <div>
+        <table id="searchout" style="width:100%" class="table table-bordered">
+        </table>
+    </div>
+    <br />
+    @section Scripts {
+        <script>
+            $(function () {
+                loadData();
 
-<h3>Search for a Neighborhood by Name</h3>
-<input id="list" list="Ndata" style="width: 200px" />
-<datalist id="Ndata">
-</datalist>
-<input type="button" id="submit" value="Search" />
-<input type="button" id="clear" value="Clear" />
-<br />
-<div>
-    <table id="searchout" style="width:100%" class="table table-bordered">
-    </table>
-</div>
-<br />
-@section Scripts {
-    <script>
-        $(function () {
-            loadData();
+                var datalist = [];
 
-            var datalist = [];
+                $("#submit").on("click", function () {
 
-            $("#submit").on("click", function () {
+                    var searchterm = $("#list").val();
 
-                var searchterm = $("#list").val();
-
-                $("#list").val("");
+                    $("#list").val("");
 
 
-                for (i = 0; i < datalist.length; i++) {
+                    for (i = 0; i < datalist.length; i++) {
 
-                    if (datalist[i][0].neighborhood == searchterm) {
+                        if (datalist[i][0].neighborhood == searchterm) {
 
-                        $("#searchout").append('<tr><th style="background-color:black; color:white">Neighborhood</th><th style="background-color:black; color:white">Number of Cleanliness Complaints</th></tr><tr><td><strong>' + datalist[i][0].neighborhood + '</strong></td><td>' + datalist[i][0].wfdb + '</td></tr><tr class="table-secondary"><th>Property ID</th><th>Street Number</th><th>Street Name</th><th>Neighborhood</th><th>Official Status</th><th>URL</th></tr>')
+                            $("#searchout").append('<tr><th style="background-color:black; color:white">Neighborhood</th><th style="background-color:black; color:white">Number of Cleanliness Complaints</th></tr><tr><td><strong>' + datalist[i][0].neighborhood + '</strong></td><td>' + datalist[i][0].wfdb + '</td></tr><tr class="table-secondary"><th>Property ID</th><th>Street Number</th><th>Street Name</th><th>Neighborhood</th><th>Official Status</th><th>URL</th></tr>')
 
-                        for (x = 0; x < datalist[i][1].length; x++) {
+                            for (x = 0; x < datalist[i][1].length; x++) {
 
-                            $("#searchout").append('<tr class="table-secondary"><td>' + datalist[i][1][x].uniqueid + '</td><td>' + datalist[i][1][x].street_no + '</td><td>' + datalist[i][1][x].street_name + '</td><td>' + datalist[i][1][x].neighborhood + '</td><td>' + datalist[i][1][x].data_status_display + '</td><th><a href="' + datalist[i][1][x].url + '">' + datalist[i][1][x].url + '</a></td></tr>')
+                                $("#searchout").append('<tr class="table-secondary"><td>' + datalist[i][1][x].uniqueid + '</td><td>' + datalist[i][1][x].street_no + '</td><td>' + datalist[i][1][x].street_name + '</td><td>' + datalist[i][1][x].neighborhood + '</td><td>' + datalist[i][1][x].data_status_display + '</td><th><a href="' + datalist[i][1][x].url + '">' + datalist[i][1][x].url + '</a></td></tr>')
+
+                            }
 
                         }
-
                     }
-                }
-                $("#searchout").append('<tr><td>' + searchterm + '</td><td>' + crimerate + '</td></tr>')
+                    $("#searchout").append('<tr><td>' + searchterm + '</td><td>' + crimerate + '</td></tr>')
 
-            });
-            $("#clear").on("click", function () {
+                });
+                $("#clear").on("click", function () {
 
-                $("#searchout").empty();
+                    $("#searchout").empty();
 
-            });
-
-            function loadData() {
-                $.ajax({
-                    url: "https://localhost:44383/JsonData",
-                    dataType: 'json',
-                    contentType: 'application/json',
-                    method: 'GET'
-                }).done(function (responseJSON, status, xhr) {
-                    $.each(responseJSON, function (index, item) {
-
-                        datalist.push(item);
-
-                        $("#Ndata").append('<option value="' + item[0].neighborhood + '">');
-
-                    });
-                    console.log(datalist);
-
-                }).fail(function (xhr, status, error) {
-                    console.log("fail", xhr, status, error);
-                    alert("There was an error retrieving the data");
                 });
 
-            };
-        });
-    </script>
-}
+                function loadData() {
+                    $.ajax({
+                        url: "https://localhost:44383/JsonData",
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        method: 'GET'
+                    }).done(function (responseJSON, status, xhr) {
+                        $.each(responseJSON, function (index, item) {
+
+                            datalist.push(item);
+
+                            $("#Ndata").append('<option value="' + item[0].neighborhood + '">');
+
+                        });
+                        console.log(datalist);
+
+                    }).fail(function (xhr, status, error) {
+                        console.log("fail", xhr, status, error);
+                        alert("There was an error retrieving the data");
+                    });
+
+                };
+            });
+        </script>
+    }
