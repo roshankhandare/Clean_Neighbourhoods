@@ -125,3 +125,5 @@ C:\Users\Dominic\Documents\GitHub\Clean_Neighbourhoods\SafeNeighbourhood\obj\Deb
 C:\Users\Dominic\Documents\GitHub\Clean_Neighbourhoods\SafeNeighbourhood\obj\Debug\netcoreapp2.2\SafeNeighbourhood.pdb
 C:\Users\Dominic\Documents\GitHub\Clean_Neighbourhoods\SafeNeighbourhood\obj\Debug\netcoreapp2.2\SafeNeighbourhood.csproj.CopyComplete
 C:\Users\Dominic\Documents\GitHub\Clean_Neighbourhoods\SafeNeighbourhood\obj\Debug\netcoreapp2.2\Razor\Pages\JsonData.g.cshtml.cs
+C:\Users\rosha\source\repos\Clean_Neighbourhoods\SafeNeighbourhood\obj\Debug\netcoreapp2.2\Razor\Pages\JsonData.cshtml.g.cs
+C:\Users\rosha\source\repos\Clean_Neighbourhoods\SafeNeighbourhood\obj\Debug\netcoreapp2.2\Razor\Pages\Tab1.cshtml.g.cs

@@ -1,6 +1,8 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - SafeNeighbourhood</title>
@@ -13,26 +15,38 @@
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
               crossorigin="anonymous"
-              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"/>
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
     </environment>
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
     <header>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">SafeNeighbourhood</a>
+                <a class="navbar-brand" asp-area="" asp-page="/Index">Search for Vacant Properties</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                        <li class="nav-item" style="padding-left:1em">
+                            @*<a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>*@
+                            <a class="fa fa-search" asp-area="" asp-page="/Index"></a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                        <li class="nav-item" style="padding-left:1em">
+                            <a class="fa fa-globe" asp-area="" asp-page="/Tab1"></a>
+                        </li>
+                        <li class="nav-item" style="padding-left:1em">
+                            <a class="fa fa-handshake-o" asp-area="" asp-page="/Tab1"></a>
+                        </li>
+                        <li class="nav-item" style="padding-left:1em">
+                            <a class="fa fa-street-view" asp-area="" asp-page="/Tab2"></a>
+                        </li>
+                        <li class="nav-item" style="padding-left:1em">
+                            <a class="fa fa-archive" asp-area="" asp-page="/Tab1"></a>
                         </li>
                     </ul>
                 </div>
