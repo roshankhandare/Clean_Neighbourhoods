@@ -1,0 +1,44 @@
+<table class="table table-bordered" style="display:none">
+    @{foreach (QuicktypeNeighborhood.NeighborhoodData neighborhood in neighborhoods)
+        {
+            IEnumerable<QuicktypeProperty.PropertyData> vacantPropertiesInNeighborhood = vacantProperties.Where(property => property.Neighborhood.Equals(neighborhood.Neighborhood));
+
+            if (vacantPropertiesInNeighborhood.Any())
+            {
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Neighborhood</th>
+                        <th>Number of Cleanliness Complaints</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td><strong>@neighborhood.Neighborhood</strong></td>
+                    <td>@neighborhood.Wfdb</td>
+                </tr>
+                <tr class="table-secondary">
+                    <th>Property ID</th>
+                    <th>Street Number</th>
+                    <th>Street Name</th>
+                    <th>Neighborhood</th>
+                    <th>Official Status</th>
+                    <th>URL</th>
+                </tr>
+
+                foreach (QuicktypeProperty.PropertyData property in vacantPropertiesInNeighborhood)
+                {
+                    <tr>
+                        <td>@property.Uniqueid</td>
+                        <td>@property.StreetNo</td>
+                        <td>@property.StreetName</td>
+                        <td>@property.Neighborhood</td>
+                        <td>@property.DataStatusDisplay</td>
+                        <td><a href="@property.Url">@property.Url</a></td>
+                    </tr>
+                }
+                <tr>
+                    <td> </td>
+                </tr>
+            }
+        }
+    }
+</table>
