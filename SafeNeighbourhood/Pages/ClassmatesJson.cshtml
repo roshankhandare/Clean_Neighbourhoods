@@ -1,0 +1,35 @@
+﻿@page
+@model SafeNeighbourhood.Pages.ClassmatesJsonModel
+@{
+    ViewData["Title"] = "ClassmatesJson";
+}
+
+<h1>ClassmatesJson</h1>
+<table id="Output">
+
+</table>
+
+@section Scripts {
+<script>
+    $(function () {
+
+        loadData();
+
+        function loadData() {
+            $.ajax({
+                    url: "https://localhost:44322/index",
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    method: 'GET'
+                }).done(function (responseJSON, status, xhr) {
+                    $.each(responseJSON, function (index, item) {
+                        
+                        $("#Output").append('<tr><th>DBN</th><th>School Name</th><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr>');
+
+
+                    });
+        }
+
+    });
+</script>
+}

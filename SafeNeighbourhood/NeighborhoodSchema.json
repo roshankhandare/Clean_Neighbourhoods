@@ -1,0 +1,27 @@
+﻿{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "type": "array",
+    "items": {
+        "$ref": "#/definitions/NeighborhoodElement"
+    },
+    "definitions": {
+        "NeighborhoodElement": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "neighborhood": {
+                    "type": "string"
+                },
+                "wfdb": {
+                    "type": "string",
+                    "format": "integer"
+                }
+            },
+            "required": [
+                "neighborhood",
+                "wfdb"
+            ],
+            "title": "NeighborhoodElement"
+        }
+    }
+}
