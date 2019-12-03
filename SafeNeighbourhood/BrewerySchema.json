@@ -1,0 +1,480 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "array",
+  "title": "The Root Schema",
+  "items": {
+    "$id": "#/items",
+    "type": "object",
+    "title": "The Items Schema",
+    "required": [
+      "reviews",
+      "total",
+      "possibleLanguages",
+      "id",
+      "alias",
+      "name",
+      "imageUrl",
+      "isClosed",
+      "url",
+      "reviewCount",
+      "categories",
+      "rating",
+      "coordinates",
+      "transactions",
+      "price",
+      "location",
+      "phone",
+      "displayPhone",
+      "distance"
+    ],
+    "properties": {
+      "reviews": {
+        "$id": "#/items/properties/reviews",
+        "type": "array",
+        "title": "The Reviews Schema",
+        "items": {
+          "$id": "#/items/properties/reviews/items",
+          "type": "object",
+          "title": "The Items Schema",
+          "required": [
+            "id",
+            "url",
+            "text",
+            "rating",
+            "timeCreated",
+            "user"
+          ],
+          "properties": {
+            "id": {
+              "$id": "#/items/properties/reviews/items/properties/id",
+              "type": "string",
+              "title": "The Id Schema",
+              "default": "",
+              "examples": [
+                "0pHq8EWC1wBTf3_yzsRTFA"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "url": {
+              "$id": "#/items/properties/reviews/items/properties/url",
+              "type": "string",
+              "title": "The Url Schema",
+              "default": "",
+              "examples": [
+                "https://www.yelp.com/biz/tafts-ale-house-cincinnati?adjust_creative=v1jAERAlJAHqtkRZpoytAw&hrid=0pHq8EWC1wBTf3_yzsRTFA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_reviews&utm_source=v1jAERAlJAHqtkRZpoytAw"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "text": {
+              "$id": "#/items/properties/reviews/items/properties/text",
+              "type": "string",
+              "title": "The Text Schema",
+              "default": "",
+              "examples": [
+                "Quickly became my favorite spot in Cincinnati.\nA converted church, this space is absolutely beautiful. The staff is beyond awesome! \nBeer is made in-house..."
+              ],
+              "pattern": "^(.*)$"
+            },
+            "rating": {
+              "$id": "#/items/properties/reviews/items/properties/rating",
+              "type": "integer",
+              "title": "The Rating Schema",
+              "default": 0,
+              "examples": [
+                5
+              ]
+            },
+            "timeCreated": {
+              "$id": "#/items/properties/reviews/items/properties/timeCreated",
+              "type": "string",
+              "title": "The Timecreated Schema",
+              "default": "",
+              "examples": [
+                "2019-09-22T05:46:26+00:00"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "user": {
+              "$id": "#/items/properties/reviews/items/properties/user",
+              "type": "object",
+              "title": "The User Schema",
+              "required": [
+                "id",
+                "profileUrl",
+                "imageUrl",
+                "name"
+              ],
+              "properties": {
+                "id": {
+                  "$id": "#/items/properties/reviews/items/properties/user/properties/id",
+                  "type": "string",
+                  "title": "The Id Schema",
+                  "default": "",
+                  "examples": [
+                    "BnPxbpz6pPOdi32L1ozp0Q"
+                  ],
+                  "pattern": "^(.*)$"
+                },
+                "profileUrl": {
+                  "$id": "#/items/properties/reviews/items/properties/user/properties/profileUrl",
+                  "type": "string",
+                  "title": "The Profileurl Schema",
+                  "default": "",
+                  "examples": [
+                    "https://www.yelp.com/user_details?userid=BnPxbpz6pPOdi32L1ozp0Q"
+                  ],
+                  "pattern": "^(.*)$"
+                },
+                "imageUrl": {
+                  "$id": "#/items/properties/reviews/items/properties/user/properties/imageUrl",
+                  "type": "string",
+                  "title": "The Imageurl Schema",
+                  "default": "",
+                  "examples": [
+                    "https://s3-media2.fl.yelpcdn.com/photo/qyTpzhPhooqqmwQoysX-Mw/o.jpg"
+                  ],
+                  "pattern": "^(.*)$"
+                },
+                "name": {
+                  "$id": "#/items/properties/reviews/items/properties/user/properties/name",
+                  "type": "string",
+                  "title": "The Name Schema",
+                  "default": "",
+                  "examples": [
+                    "Rickey C."
+                  ],
+                  "pattern": "^(.*)$"
+                }
+              }
+            }
+          }
+        }
+      },
+      "total": {
+        "$id": "#/items/properties/total",
+        "type": "integer",
+        "title": "The Total Schema",
+        "default": 0,
+        "examples": [
+          930
+        ]
+      },
+      "possibleLanguages": {
+        "$id": "#/items/properties/possibleLanguages",
+        "type": "array",
+        "title": "The Possiblelanguages Schema",
+        "items": {
+          "$id": "#/items/properties/possibleLanguages/items",
+          "type": "string",
+          "title": "The Items Schema",
+          "default": "",
+          "examples": [
+            "en",
+            "ja"
+          ],
+          "pattern": "^(.*)$"
+        }
+      },
+      "id": {
+        "$id": "#/items/properties/id",
+        "type": "string",
+        "title": "The Id Schema",
+        "default": "",
+        "examples": [
+          "aeNlmuqx9tws1OKbe5rX-A"
+        ],
+        "pattern": "^(.*)$"
+      },
+      "alias": {
+        "$id": "#/items/properties/alias",
+        "type": "string",
+        "title": "The Alias Schema",
+        "default": "",
+        "examples": [
+          "tafts-ale-house-cincinnati"
+        ],
+        "pattern": "^(.*)$"
+      },
+      "name": {
+        "$id": "#/items/properties/name",
+        "type": "string",
+        "title": "The Name Schema",
+        "default": "",
+        "examples": [
+          "Taft's Ale House"
+        ],
+        "pattern": "^(.*)$"
+      },
+      "imageUrl": {
+        "$id": "#/items/properties/imageUrl",
+        "type": "string",
+        "title": "The Imageurl Schema",
+        "default": "",
+        "examples": [
+          "https://s3-media4.fl.yelpcdn.com/bphoto/0Duo3-_lyhk_dZ_4RgwnoQ/o.jpg"
+        ],
+        "pattern": "^(.*)$"
+      },
+      "isClosed": {
+        "$id": "#/items/properties/isClosed",
+        "type": "boolean",
+        "title": "The Isclosed Schema",
+        "default": false,
+        "examples": [
+          false
+        ]
+      },
+      "url": {
+        "$id": "#/items/properties/url",
+        "type": "string",
+        "title": "The Url Schema",
+        "default": "",
+        "examples": [
+          "https://www.yelp.com/biz/tafts-ale-house-cincinnati?adjust_creative=v1jAERAlJAHqtkRZpoytAw&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=v1jAERAlJAHqtkRZpoytAw"
+        ],
+        "pattern": "^(.*)$"
+      },
+      "reviewCount": {
+        "$id": "#/items/properties/reviewCount",
+        "type": "integer",
+        "title": "The Reviewcount Schema",
+        "default": 0,
+        "examples": [
+          930
+        ]
+      },
+      "categories": {
+        "$id": "#/items/properties/categories",
+        "type": "array",
+        "title": "The Categories Schema",
+        "items": {
+          "$id": "#/items/properties/categories/items",
+          "type": "object",
+          "title": "The Items Schema",
+          "required": [
+            "alias",
+            "title"
+          ],
+          "properties": {
+            "alias": {
+              "$id": "#/items/properties/categories/items/properties/alias",
+              "type": "string",
+              "title": "The Alias Schema",
+              "default": "",
+              "examples": [
+                "newamerican"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "title": {
+              "$id": "#/items/properties/categories/items/properties/title",
+              "type": "string",
+              "title": "The Title Schema",
+              "default": "",
+              "examples": [
+                "American (New)"
+              ],
+              "pattern": "^(.*)$"
+            }
+          }
+        }
+      },
+      "rating": {
+        "$id": "#/items/properties/rating",
+        "type": "number",
+        "title": "The Rating Schema",
+        "default": 0.0,
+        "examples": [
+          4.5
+        ]
+      },
+      "coordinates": {
+        "$id": "#/items/properties/coordinates",
+        "type": "object",
+        "title": "The Coordinates Schema",
+        "required": [
+          "latitude",
+          "longitude"
+        ],
+        "properties": {
+          "latitude": {
+            "$id": "#/items/properties/coordinates/properties/latitude",
+            "type": "number",
+            "title": "The Latitude Schema",
+            "default": 0.0,
+            "examples": [
+              39.11135
+            ]
+          },
+          "longitude": {
+            "$id": "#/items/properties/coordinates/properties/longitude",
+            "type": "number",
+            "title": "The Longitude Schema",
+            "default": 0.0,
+            "examples": [
+              -84.51752
+            ]
+          }
+        }
+      },
+      "transactions": {
+        "$id": "#/items/properties/transactions",
+        "type": "array",
+        "title": "The Transactions Schema",
+        "items": {
+          "$id": "#/items/properties/transactions/items",
+          "type": "string",
+          "title": "The Items Schema",
+          "default": "",
+          "examples": [
+            "pickup",
+            "delivery"
+          ],
+          "pattern": "^(.*)$"
+        }
+      },
+      "price": {
+        "$id": "#/items/properties/price",
+        "type": "string",
+        "title": "The Price Schema",
+        "default": "",
+        "examples": [
+          "$$"
+        ],
+        "pattern": "^(.*)$"
+      },
+      "location": {
+        "$id": "#/items/properties/location",
+        "type": "object",
+        "title": "The Location Schema",
+        "required": [
+          "address1",
+          "address2",
+          "address3",
+          "city",
+          "zipCode",
+          "country",
+          "state",
+          "displayAddress"
+        ],
+        "properties": {
+          "address1": {
+            "$id": "#/items/properties/location/properties/address1",
+            "type": "string",
+            "title": "The Address1 Schema",
+            "default": "",
+            "examples": [
+              "1429 Race St"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "address2": {
+            "$id": "#/items/properties/location/properties/address2",
+            "type": "string",
+            "title": "The Address2 Schema",
+            "default": "",
+            "examples": [
+              ""
+            ],
+            "pattern": "^(.*)$"
+          },
+          "address3": {
+            "$id": "#/items/properties/location/properties/address3",
+            "type": "string",
+            "title": "The Address3 Schema",
+            "default": "",
+            "examples": [
+              ""
+            ],
+            "pattern": "^(.*)$"
+          },
+          "city": {
+            "$id": "#/items/properties/location/properties/city",
+            "type": "string",
+            "title": "The City Schema",
+            "default": "",
+            "examples": [
+              "Cincinnati"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "zipCode": {
+            "$id": "#/items/properties/location/properties/zipCode",
+            "type": "integer",
+            "title": "The Zipcode Schema",
+            "default": 0,
+            "examples": [
+              45202
+            ]
+          },
+          "country": {
+            "$id": "#/items/properties/location/properties/country",
+            "type": "string",
+            "title": "The Country Schema",
+            "default": "",
+            "examples": [
+              "US"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "state": {
+            "$id": "#/items/properties/location/properties/state",
+            "type": "string",
+            "title": "The State Schema",
+            "default": "",
+            "examples": [
+              "OH"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "displayAddress": {
+            "$id": "#/items/properties/location/properties/displayAddress",
+            "type": "array",
+            "title": "The Displayaddress Schema",
+            "items": {
+              "$id": "#/items/properties/location/properties/displayAddress/items",
+              "type": "string",
+              "title": "The Items Schema",
+              "default": "",
+              "examples": [
+                "1429 Race St",
+                "Cincinnati, OH 45202"
+              ],
+              "pattern": "^(.*)$"
+            }
+          }
+        }
+      },
+      "phone": {
+        "$id": "#/items/properties/phone",
+        "type": "string",
+        "title": "The Phone Schema",
+        "default": "",
+        "examples": [
+          "+15133341393"
+        ],
+        "pattern": "^(.*)$"
+      },
+      "displayPhone": {
+        "$id": "#/items/properties/displayPhone",
+        "type": "string",
+        "title": "The Displayphone Schema",
+        "default": "",
+        "examples": [
+          "(513) 334-1393"
+        ],
+        "pattern": "^(.*)$"
+      },
+      "distance": {
+        "$id": "#/items/properties/distance",
+        "type": "number",
+        "title": "The Distance Schema",
+        "default": 0.0,
+        "examples": [
+          1942.677799008138
+        ]
+      }
+    }
+  }
+}

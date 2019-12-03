@@ -6,30 +6,41 @@
 
 <h1>ClassmatesJson</h1>
 <table id="Output">
-
 </table>
 
 @section Scripts {
-<script>
-    $(function () {
+    <script>
+        $(function () {
 
-        loadData();
+            loadData();
 
-        function loadData() {
-            $.ajax({
-                    url: "https://localhost:44322/index",
+            function loadData() {
+                $.ajax({
+                    url: "https://breweryratings20191109050130.azurewebsites.net/Privacy",
                     dataType: 'json',
                     contentType: 'application/json',
-                    method: 'GET'
+                    method: 'GET',
+                    Access-Control-Allow-Origin: *,
                 }).done(function (responseJSON, status, xhr) {
                     $.each(responseJSON, function (index, item) {
-                        
-                        $("#Output").append('<tr><th>DBN</th><th>School Name</th><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr>');
+
+                        $("#Output").append('<tr><th>Brewery</th></tr><tr><th>' + item.name + '</th></tr><tr><th>User</th><th>Rating</th><th>Review</th></tr>');
+                        console.log(item);
+
+                        $.each(item.reviews, function (index, item) {
+
+                            $("#Output").append('<tr><th>' + item.user.name + '</th><th>' + item.rating + '</th><th>' + item.text + '</th></tr>');
+                            console.log(item);
+
+
+                        });
 
 
                     });
-        }
+                })
+            }
+                        
 
-    });
-</script>
+        });
+    </script>
 }

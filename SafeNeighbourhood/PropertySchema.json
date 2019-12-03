@@ -103,7 +103,7 @@
         }
       },
       "required": [
-        /*"comp_type",
+        "comp_type",
         "comp_type_desc",
         "data_status",
         "data_status_display",
@@ -123,7 +123,7 @@
         "work_type",
         "x_coord",
         "y_coord",
-        "yn_activity_report"*/
+        "yn_activity_report"
       ],
       "title": "PropertyElement"
     },
