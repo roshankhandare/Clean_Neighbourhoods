@@ -16,7 +16,7 @@
 </datalist>
 
 <div style="text-align: center">
-    </br>
+    <br />
     <input type="button" id="submit" value="Search" />
     <input type="button" id="clear" value="Clear" />
 </div>
@@ -65,7 +65,7 @@
 
             function loadData() {
                 $.ajax({
-                    url: "https://localhost:44383/JsonData",
+                    url: "/JsonData",
                     dataType: 'json',
                     contentType: 'application/json',
                     method: 'GET'
