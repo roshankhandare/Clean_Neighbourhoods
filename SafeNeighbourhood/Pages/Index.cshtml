@@ -9,88 +9,81 @@
 <h2>Vacant Homes in Cincinnati by Neighborhood Cleanliness</h2>
 <p>(Data since 2012)</p>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<div class="w3-container">
-    <div class="w3-padding w3-xlarge w3-teal">
-        <i class="fa fa-search"></i>
-        <i class="fa fa-globe"></i>
-        <i class="fa fa-handshake-o"></i>
-        <i class="fa fa-street-view"></i>
-        <i class="fa fa-archive"></i>
-    </div>
-   
-    <h3>Search for a Neighborhood by Name</h3>
-    <input id="list" list="Ndata" style="width: 200px" />
-    <datalist id="Ndata">
-    </datalist>
+
+<h3 align="center">Search for a Neighborhood by Name</h3>
+<input id="list" list="Ndata" style="width: 1000px" />
+<datalist id="Ndata">
+</datalist>
+
+<div style="text-align: center">
+    <br />
     <input type="button" id="submit" value="Search" />
     <input type="button" id="clear" value="Clear" />
-    <br />
-    <div>
-        <table id="searchout" style="width:100%" class="table table-bordered">
-        </table>
-    </div>
-    <br />
-    @section Scripts {
-        <script>
-            $(function () {
-                loadData();
+</div>
+<br />
+<div>
+    <table id="searchout" style="width:100%" class="table table-bordered">
+    </table>
+</div>
+<br />
+@section Scripts {
+    <script>
+        $(function () {
+            loadData();
 
-                var datalist = [];
+            var datalist = [];
 
-                $("#submit").on("click", function () {
+            $("#submit").on("click", function () {
 
-                    var searchterm = $("#list").val();
+                var searchterm = $("#list").val();
 
-                    $("#list").val("");
+                $("#list").val("");
 
 
-                    for (i = 0; i < datalist.length; i++) {
+                for (i = 0; i < datalist.length; i++) {
 
-                        if (datalist[i][0].neighborhood == searchterm) {
+                    if (datalist[i][0].neighborhood == searchterm) {
 
-                            $("#searchout").append('<tr><th style="background-color:black; color:white">Neighborhood</th><th style="background-color:black; color:white">Number of Cleanliness Complaints</th></tr><tr><td><strong>' + datalist[i][0].neighborhood + '</strong></td><td>' + datalist[i][0].wfdb + '</td></tr><tr class="table-secondary"><th>Property ID</th><th>Street Number</th><th>Street Name</th><th>Neighborhood</th><th>Official Status</th><th>URL</th></tr>')
+                        $("#searchout").append('<tr><th style="background-color:black; color:white">Neighborhood</th><th style="background-color:black; color:white">Number of Cleanliness Complaints</th></tr><tr><td><strong>' + datalist[i][0].neighborhood + '</strong></td><td>' + datalist[i][0].wfdb + '</td></tr><tr class="table-secondary"><th>Property ID</th><th>Street Number</th><th>Street Name</th><th>Neighborhood</th><th>Official Status</th><th>URL</th></tr>')
 
-                            for (x = 0; x < datalist[i][1].length; x++) {
+                        for (x = 0; x < datalist[i][1].length; x++) {
 
-                                $("#searchout").append('<tr class="table-secondary"><td>' + datalist[i][1][x].uniqueid + '</td><td>' + datalist[i][1][x].street_no + '</td><td>' + datalist[i][1][x].street_name + '</td><td>' + datalist[i][1][x].neighborhood + '</td><td>' + datalist[i][1][x].data_status_display + '</td><th><a href="' + datalist[i][1][x].url + '">' + datalist[i][1][x].url + '</a></td></tr>')
-
-                            }
+                            $("#searchout").append('<tr class="table-secondary"><td>' + datalist[i][1][x].uniqueid + '</td><td>' + datalist[i][1][x].street_no + '</td><td>' + datalist[i][1][x].street_name + '</td><td>' + datalist[i][1][x].neighborhood + '</td><td>' + datalist[i][1][x].data_status_display + '</td><th><a href="' + datalist[i][1][x].url + '">' + datalist[i][1][x].url + '</a></td></tr>')
 
                         }
+
                     }
-                    $("#searchout").append('<tr><td>' + searchterm + '</td><td>' + crimerate + '</td></tr>')
+                }
+                $("#searchout").append('<tr><td>' + searchterm + '</td><td>' + crimerate + '</td></tr>')
 
-                });
-                $("#clear").on("click", function () {
-
-                    $("#searchout").empty();
-
-                });
-
-                function loadData() {
-                    $.ajax({
-                        url: "https://safeneighbourhood20191109063116.azurewebsites.net/jsondata",
-                        dataType: 'json',
-                        contentType: 'application/json',
-                        method: 'GET'
-                    }).done(function (responseJSON, status, xhr) {
-                        $.each(responseJSON, function (index, item) {
-
-                            datalist.push(item);
-
-                            $("#Ndata").append('<option value="' + item[0].neighborhood + '">');
-
-                        });
-                        console.log(datalist);
-
-                    }).fail(function (xhr, status, error) {
-                        console.log("fail", xhr, status, error);
-                        alert("There was an error retrieving the data");
-                    });
-
-                };
             });
-        </script>
-    }
+            $("#clear").on("click", function () {
+
+                $("#searchout").empty();
+
+
+            function loadData() {
+                $.ajax({
+                    url: "/JsonData",
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    method: 'GET'
+                }).done(function (responseJSON, status, xhr) {
+                    $.each(responseJSON, function (index, item) {
+
+                        datalist.push(item);
+
+                        $("#Ndata").append('<option value="' + item[0].neighborhood + '">');
+
+                    });
+                    console.log(datalist);
+
+                }).fail(function (xhr, status, error) {
+                    console.log("fail", xhr, status, error);
+                    alert("There was an error retrieving the data");
+                });
+
+            };
+        });
+    </script>
+}

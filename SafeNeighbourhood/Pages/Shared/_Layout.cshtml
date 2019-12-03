@@ -25,7 +25,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">Search for Vacant Properties</a>
+                <a class="navbar-brand" asp-area="" asp-page="/Index"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -34,19 +34,22 @@
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item" style="padding-left:1em">
                             @*<a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>*@
-                            <a class="fa fa-search" asp-area="" asp-page="/Index"></a>
+                            <a class="fa fa-search" title="Search Property" asp-area="" asp-page="/Index"></a>
                         </li>
                         <li class="nav-item" style="padding-left:1em">
-                            <a class="fa fa-globe" asp-area="" asp-page="/Tab1"></a>
+                            <a class="fa fa-globe" title="Visualization" asp-area="" asp-page="/Tab1"></a>
                         </li>
                         <li class="nav-item" style="padding-left:1em">
-                            <a class="fa fa-handshake-o" asp-area="" asp-page="/Tab1"></a>
+                            <a class="fa fa-binoculars" title="Satellite View" asp-area="" asp-page="/Tab2"></a>
                         </li>
                         <li class="nav-item" style="padding-left:1em">
-                            <a class="fa fa-street-view" asp-area="" asp-page="/Tab2"></a>
+                            <a class="fa fa-handshake-o" title="Peers JSON Consumption" asp-area="" asp-page="/ClassmatesJson"></a>
                         </li>
                         <li class="nav-item" style="padding-left:1em">
-                            <a class="fa fa-archive" asp-area="" asp-page="/Tab1"></a>
+                            <a class="fa fa-archive" title="Data Collection" asp-area="" asp-page="/BulkData"></a>
+                        </li>
+                        <li class="nav-item" style="padding-left:1em">
+                            <a class="fa fa-code" title="Our JSON Data" asp-area="" asp-page="/JsonData"></a>
                         </li>
                     </ul>
                 </div>
