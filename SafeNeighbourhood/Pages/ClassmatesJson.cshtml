@@ -2,45 +2,23 @@
 @model SafeNeighbourhood.Pages.ClassmatesJsonModel
 @{
     ViewData["Title"] = "ClassmatesJson";
+    var Breweries = (IEnumerable<QuickType.BreweryData>)ViewData["Breweries"];
 }
 
 <h1>ClassmatesJson</h1>
-<table id="Output">
+<table id="Output" style="color:white">
+
+    @{foreach (QuickType.BreweryData brewery in Breweries)
+        {
+            
+            <tr><th style="color:gold">@brewery.Name</th></tr>
+            <tr style="border:solid; background-color:rgba(140, 140, 140,.4)"><th>User</th><th style="padding-right:20px">Rating</th><th>Review</th></tr>
+            @foreach (QuickType.ReviewElement review in brewery.Reviews)
+                {
+                    <tr style="border:solid; background-color:rgba(140, 140, 140,.4)"><td>@review.User.Name</td><td style="padding-right:20px">@review.Rating</td><td>@review.Text</td></tr>
+                }
+            
+
+
+        } }
 </table>
-
-@section Scripts {
-    <script>
-        $(function () {
-
-            loadData();
-
-            function loadData() {
-                $.ajax({
-                    url: "https://breweryratings20191109050130.azurewebsites.net/Privacy",
-                    dataType: 'json',
-                    contentType: 'application/json',
-                    method: 'GET',
-                    Access-Control-Allow-Origin: *,
-                }).done(function (responseJSON, status, xhr) {
-                    $.each(responseJSON, function (index, item) {
-
-                        $("#Output").append('<tr><th>Brewery</th></tr><tr><th>' + item.name + '</th></tr><tr><th>User</th><th>Rating</th><th>Review</th></tr>');
-                        console.log(item);
-
-                        $.each(item.reviews, function (index, item) {
-
-                            $("#Output").append('<tr><th>' + item.user.name + '</th><th>' + item.rating + '</th><th>' + item.text + '</th></tr>');
-                            console.log(item);
-
-
-                        });
-
-
-                    });
-                })
-            }
-                        
-
-        });
-    </script>
-}
